@@ -12,3 +12,6 @@ the 8-puzzle problem. The problem was solved by 3 aproaches:
   Implements a tic tac toe game which intelligent
   agent (the machine) uses the minimax algorithm to
   make the best moves
+
+To do:
+- [ ] implement minimax with heuristics
