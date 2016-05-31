@@ -18,6 +18,9 @@ player_symbol = {0:'X', 1:'O'}
 # the machine is the player number 1 (second)
 machine = 1
 
+# count visited states during minimax
+state_count = 0
+
 def minimax(state, player):
     """
     returns the best move player can do
@@ -26,8 +29,10 @@ def minimax(state, player):
         param: player number
         (on this code only called with the machine)
     """
+    global state_count
     best = None
     Max = float('-inf')
+    state_count = 0
 
     for i in range(3):
         for j in range(3):
@@ -52,6 +57,9 @@ def max_value(state, player):
         param1: current state
         param2: max player
     """
+    global state_count
+    state_count +=1
+
     if (is_final_state(state)): return utility(state, machine)
     v = float('-inf') 
 
@@ -74,6 +82,9 @@ def min_value(state, player):
         param1: current state
         param2: min player
     """
+    global state_count
+    state_count +=1
+
     if (is_final_state(state)): return utility(state, machine)  
     v = float('inf')
 
@@ -222,6 +233,7 @@ while (not is_final_state(state)):
         state = minimax(state, player)
     
     print_state(state)
+    if (player): print("# of visited states: %s\n" % state_count)
     player = not player
 
 # who won?
